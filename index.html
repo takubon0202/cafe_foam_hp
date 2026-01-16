@@ -565,8 +565,9 @@
                         </div>
                     </div>
 
-                    <!-- Feed Mock -->
-                    <div class="grid grid-cols-3 gap-1 md:gap-4">
+                    <!-- Feed Area (Dynamic) -->
+                    <div id="insta-feed" class="grid grid-cols-3 gap-1 md:gap-4 min-h-[300px]">
+                        <!-- Initial Static Content / Fallback (Will be replaced by JS if token exists) -->
                         <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank" rel="noopener noreferrer"
                             class="aspect-square relative group overflow-hidden rounded-xl block cursor-pointer">
                             <img src="menu.png" alt="Post 1"
@@ -709,12 +710,115 @@
             <div
                 class="max-w-6xl mx-auto border-t border-white/5 mt-20 pt-10 text-center flex flex-col md:flex-row justify-between items-center text-xs text-white/30 tracking-wider">
                 <p>© Cafe Foam Project Team.</p>
-                <p class="mt-2 md:mt-0">Supported by Social Co-creation Digital Dept.</p>
+                <p class="mt-2 md:mt-0">Supported by <a href="https://www.cid.yamagata-u.ac.jp/" target="_blank"
+                        class="hover:text-accent underline transition-colors">Social Co-creation Digital Dept.</a></p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <a href="https://www.yamagata-u.ac.jp/jp/" target="_blank"
+                        class="px-3 py-1 border border-white/20 rounded-full hover:bg-white/10 transition-colors">Yamagata
+                        University</a>
+                    <a href="https://www.cid.yamagata-u.ac.jp/" target="_blank"
+                        class="px-3 py-1 border border-white/20 rounded-full hover:bg-white/10 transition-colors">Digital
+                        Dept. HP</a>
+                </div>
             </div>
         </footer>
     </main>
 
     <script>
+        // --- Instagram Graph API Consumption Logic ---
+
+        // ユーザー設定用: ここにアクセストークンを入力してください
+        const INSTAGRAM_TOKEN = 'YOUR_ACCESS_TOKEN_HERE';
+
+        async function fetchInstagramPosts() {
+            const feedContainer = document.getElementById('insta-feed');
+            if (!feedContainer) return;
+
+            // 1. Show Skeleton Loader
+            // もしトークンが設定されていなければ、何もしない（デフォルトの静的画像を表示したままにする）
+            if (INSTAGRAM_TOKEN === 'YOUR_ACCESS_TOKEN_HERE' || !INSTAGRAM_TOKEN) {
+                // コンソールに案内を出す
+                console.info('Instagram: Token not set, using static fallback.');
+                return;
+            }
+
+            // スケルトンを表示 (Loading UI)
+            feedContainer.innerHTML = `
+                <div class="aspect-square bg-gray-100 rounded-xl animate-pulse"></div>
+                <div class="aspect-square bg-gray-100 rounded-xl animate-pulse"></div>
+                <div class="aspect-square bg-gray-100 rounded-xl animate-pulse"></div>
+            `;
+
+            const limit = 6;
+            const url = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&limit=${limit}&access_token=${INSTAGRAM_TOKEN}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Instagram API Request Failed');
+
+                const data = await response.json();
+                renderFeed(data.data);
+
+            } catch (error) {
+                console.error('Instagram Fetch Error:', error);
+                // エラー時はフォールバック（静的画像）に戻す
+                renderFallback();
+            }
+        }
+
+        function renderFeed(posts) {
+            const feedContainer = document.getElementById('insta-feed');
+            feedContainer.innerHTML = ''; // Clear skeleton
+
+            posts.forEach((post, index) => {
+                // PCでは最大6枚、スマホでは...CSS Gridで調整
+                if (index >= 6) return;
+
+                const isVideo = post.media_type === 'VIDEO';
+                const imageUrl = isVideo ? post.thumbnail_url : post.media_url;
+
+                const card = document.createElement('a');
+                card.href = post.permalink;
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+                card.className = 'aspect-square relative group overflow-hidden rounded-xl block cursor-pointer opacity-0 animate-[fadeInUp_0.5s_ease-out_forwards]';
+                card.style.animationDelay = `${index * 100}ms`;
+
+                card.innerHTML = `
+                    <img src="${imageUrl}" alt="${post.caption ? post.caption.substring(0, 20) : 'Instagram Post'}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-bold backdrop-blur-[2px]">
+                        <span class="flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </span>
+                    </div>
+                `;
+                feedContainer.appendChild(card);
+            });
+        }
+
+        function renderFallback() {
+            const feedContainer = document.getElementById('insta-feed');
+            // エラー時はデフォルトの静的画像に戻す (簡易実装: HTMLを直接再注入するか、リロード時に初期状態に戻っているため何もしない)
+            // ここでは、明示的にスケルトンから復帰させるために静的HTMLを入れる
+            feedContainer.innerHTML = `
+                <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank" rel="noopener noreferrer" class="aspect-square relative group overflow-hidden rounded-xl block cursor-pointer">
+                    <img src="menu.png" alt="Post 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-bold"><span class="flex items-center gap-1">View</span></div>
+                </a>
+                <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank" rel="noopener noreferrer" class="aspect-square relative group overflow-hidden rounded-xl block cursor-pointer">
+                    <img src="about.png" alt="Post 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-bold"><span class="flex items-center gap-1">View</span></div>
+                </a>
+                <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank" rel="noopener noreferrer" class="aspect-square relative group overflow-hidden rounded-xl block cursor-pointer">
+                    <img src="student_operation.png" alt="Post 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-bold"><span class="flex items-center gap-1">View</span></div>
+                </a>
+             `;
+        }
+
+        // Load Instagram on startup
+        document.addEventListener('DOMContentLoaded', fetchInstagramPosts);
+
         // Header Glassmorphism on Scroll
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
