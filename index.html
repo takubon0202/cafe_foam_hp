@@ -433,46 +433,79 @@
                 </h3>
                 <h2 class="text-2xl font-bold text-coffee mb-8">最新情報は公式インスタグラムで</h2>
 
-                <!-- Instagram Card / Embed Placeholder -->
+                <!-- Instagram Profile & Feed Simulation -->
                 <div
-                    class="bg-white rounded-3xl shadow-xl p-8 max-w-sm mx-auto border border-coffee/10 hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-16 h-16 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-full p-1">
-                            <div class="w-full h-full bg-white rounded-full p-0.5">
-                                <img src="hero_bg.png" alt="Icon" class="w-full h-full object-cover rounded-full">
-                            </div>
-                        </div>
-                        <div class="text-left">
-                            <p class="font-bold text-coffee">cafefoam__yamadai</p>
-                            <p class="text-xs text-gray-500">Cafe Foam / 山形大学共創カフェ</p>
-                        </div>
+                    class="bg-white rounded-[2rem] shadow-2xl p-8 max-w-3xl mx-auto border border-coffee/5 relative overflow-hidden">
+                    <!-- Profile Header -->
+                    <div class="flex flex-col md:flex-row items-center gap-6 mb-8 pb-8 border-b border-gray-100">
                         <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank" rel="noopener noreferrer"
-                            class="ml-auto bg-accent text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-coffee transition-colors">
-                            Follow
+                            class="group relative">
+                            <div
+                                class="w-24 h-24 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-full p-[3px]">
+                                <div class="w-full h-full bg-white rounded-full p-[3px]">
+                                    <img src="hero_bg.png" alt="Profile"
+                                        class="w-full h-full object-cover rounded-full group-hover:opacity-80 transition-opacity">
+                                </div>
+                            </div>
                         </a>
+                        <div class="text-center md:text-left flex-1">
+                            <div
+                                class="flex flex-col md:flex-row items-center gap-4 mb-2 justify-center md:justify-start">
+                                <h3 class="text-2xl font-bold text-coffee">cafefoam__yamadai</h3>
+                                <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="bg-accent text-white text-sm font-bold px-6 py-2 rounded-lg hover:bg-coffee transition-colors shadow-md transform hover:-translate-y-0.5">
+                                    Follow
+                                </a>
+                            </div>
+                            <p class="font-medium text-coffee">Cafe Foam / 山形大学共創カフェ</p>
+                            <p class="text-sm text-gray-500 mt-1">山形大学 小白川キャンパス
+                                厚生会館3階<br>学生が運営する「泡」と「癒し」のカフェ☕️<br>営業時間や新メニューは投稿をチェック！</p>
+                        </div>
                     </div>
 
-                    <!-- Latest Post Preview Visual (Static Placeholder encouraging click) -->
-                    <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank" rel="noopener noreferrer"
-                        class="block relative group overflow-hidden rounded-xl mb-4">
-                        <img src="menu.png" alt="Latest Post"
-                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div
-                            class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white font-bold flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                                View on Instagram
-                            </p>
-                        </div>
-                    </a>
-                    <p class="text-xs text-center text-gray-400">Click to see more updates!</p>
+                    <!-- Feed Grid (Visual Mock to look like embedded feed) -->
+                    <div class="grid grid-cols-3 gap-1 md:gap-4">
+                        <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank" rel="noopener noreferrer"
+                            class="aspect-square relative group overflow-hidden bg-gray-100 rounded-lg block">
+                            <img src="menu.png" alt="Post 1"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm md:text-base">
+                                <span class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                    </svg> 42</span>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank" rel="noopener noreferrer"
+                            class="aspect-square relative group overflow-hidden bg-gray-100 rounded-lg block">
+                            <img src="about.png" alt="Post 2"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm md:text-base">
+                                <span class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                    </svg> 38</span>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/cafefoam__yamadai/" target="_blank" rel="noopener noreferrer"
+                            class="aspect-square relative group overflow-hidden bg-gray-100 rounded-lg block">
+                            <img src="student_operation.png" alt="Post 3"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm md:text-base">
+                                <span class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                    </svg> 55</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -482,40 +515,97 @@
             <!-- Decorative circle -->
             <div class="absolute -top-20 -left-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
 
-            <div class="max-w-4xl mx-auto text-center relative z-10">
-                <h2 class="text-2xl font-bold mb-8 tracking-[0.2em]">Cafe Foam</h2>
+            <div class="max-w-6xl mx-auto relative z-10 flex flex-col lg:flex-row gap-12 items-start">
 
-                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
-                    <div class="flex items-center gap-2 group">
-                        <div class="p-2 bg-white/10 rounded-full group-hover:bg-accent transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
+                <!-- Map Area -->
+                <div
+                    class="w-full lg:w-1/2 h-80 lg:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3131.644342247294!2d140.3423719765406!3d38.28746768313462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8bb66a87c12665%3A0xc023f044944883f8!2sYamagata%20University%20Kojirakawa%20Campus!5e0!3m2!1sen!2sjp!4v1705374829123!5m2!1sen!2sjp"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="grayscale hover:grayscale-0 transition-all duration-500">
+                    </iframe>
+                </div>
+
+                <!-- Info Area -->
+                <div class="w-full lg:w-1/2 text-left lg:pl-8">
+                    <h2 class="text-3xl font-bold mb-8 tracking-[0.2em] relative inline-block">
+                        Cafe Foam
+                        <span class="absolute -bottom-2 left-0 w-1/3 h-1 bg-accent rounded-full"></span>
+                    </h2>
+
+                    <div class="space-y-8">
+                        <!-- Location -->
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-white/10 rounded-full text-accent mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Location</h4>
+                                <p class="text-white/80 leading-relaxed">
+                                    〒990-8560<br>
+                                    山形県山形市小白川町1-4-12<br>
+                                    山形大学 小白川キャンパス <span class="text-accent font-bold">厚生会館 3階</span>
+                                </p>
+                            </div>
                         </div>
-                        <span class="text-sm md:text-base text-white/90">山形大学 社会共創デジタル学環（小白川キャンパス）</span>
+
+                        <!-- Hours -->
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-white/10 rounded-full text-accent mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Open Hours</h4>
+                                <p class="text-white/80 leading-relaxed">
+                                    <span
+                                        class="inline-block bg-accent/20 px-2 py-1 rounded text-sm mb-1">学生運営のため不定期</span><br>
+                                    平日 11:30 - 15:00 (目安)<br>
+                                    <span
+                                        class="text-sm opacity-60">※授業期間などにより変動します。<br>ご来店の際はInstagramで最新の営業日をご確認ください。</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- SNS -->
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-white/10 rounded-full text-accent mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Social</h4>
+                                <a href="https://instagram.com/cafefoam__yamadai" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-white/80 hover:text-accent transition-colors underline decoration-accent/30 hover:decoration-accent">
+                                    @cafefoam__yamadai
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <a href="https://instagram.com/cafe_foam_yamagata" target="_blank" rel="noopener noreferrer"
-                        class="flex items-center gap-2 hover:text-accent transition-colors group">
-                        <div class="p-2 bg-white/10 rounded-full group-hover:bg-accent transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </div>
-                        <span class="text-sm md:text-base text-white/90">@cafe_foam_yamagata</span>
-                    </a>
                 </div>
+            </div>
 
-                <div class="border-t border-white/10 pt-8">
-                    <p class="text-white/60 text-sm mb-4">Target: 山形大学の学生、教職員</p>
-                    <p class="text-white/40 text-xs font-light">Copyright © Campus Cafe Project Team</p>
-                </div>
+            <div
+                class="max-w-6xl mx-auto border-t border-white/10 mt-16 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-sm text-white/40">
+                <p>Copyright © Campus Cafe Project Team. All Rights Reserved.</p>
+                <p class="mt-2 md:mt-0">Supported by Social Co-creation Digital Dept.</p>
             </div>
         </footer>
     </main>
