@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Foam | 山大生の日常に、ふわふわの泡を。</title>
+    <meta name="description" content="山形大学キャンパス内にオープンする、学内の精神的な安全基地。美味しいコーヒーとラテで、頑張るあなたに安らぎを。">
+
+    <!-- Google Fonts: Zen Maru Gothic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#F5F0E6', // Warm White / Milk foam
+                        coffee: '#4A3B32', // Deep Coffee Brown
+                        accent: '#E6A67C', // Warm Orange
+                        foam: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Maru Gothic"', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 7s ease-in-out infinite 1s',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        body {
+            background-color: #F5F0E6;
+            color: #4A3B32;
+        }
+
+        /* Soft Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(230, 166, 124, 0.5);
+            border-radius: 9999px;
+            border: 2px solid #F5F0E6;
+        }
+
+        /* Glassmorphism Classes */
+        .glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-dark {
+            background: rgba(74, 59, 50, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Text Shadow for overlay */
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Intersection Observer Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Header -->
+    <header id="header" class="fixed w-full z-50 transition-all duration-300 py-4 text-white">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-widest relative group cursor-pointer drop-shadow-md">
+                Cafe Foam
+                <span
+                    class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+            </h1>
+            <nav class="hidden md:flex gap-8 font-medium drop-shadow-md">
+                <a href="#concept" class="hover:text-accent transition-colors">Concept</a>
+                <a href="#menu" class="hover:text-accent transition-colors">Menu</a>
+                <a href="#access" class="hover:text-accent transition-colors">Access</a>
+            </nav>
+            <a href="#menu"
+                class="md:hidden bg-coffee text-white px-4 py-2 rounded-full text-sm font-bold shadow-md">Menu</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen relative flex items-center justify-center overflow-hidden"
+            style="background-image: url('hero_bg.png'); background-size: cover; background-position: center;">
+            <!-- Dark Overlay for Readability -->
+            <div class="absolute inset-0 bg-black/30 z-0"></div>
+
+            <div class="z-10 text-center px-6 relative reveal active text-white">
+                <p class="text-accent tracking-[0.2em] mb-4 font-bold text-lg drop-shadow-lg">MENTAL SAFE BASE</p>
+                <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 drop-shadow-lg">
+                    山大生の日常に、<br>
+                    <span
+                        class="text-accent inline-block transform hover:scale-105 transition-transform duration-500 cursor-default">ふわふわの泡</span>を。
+                </h2>
+                <p class="text-base md:text-lg text-white/90 mb-10 font-medium leading-loose drop-shadow-md">
+                    頑張り続ける日々に、心休まる一杯を。<br>
+                    ここは、あなたのための精神的な安全基地。
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#menu"
+                        class="group relative px-8 py-3 bg-accent text-white rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                        <span class="relative z-10 font-bold">メニューを見る</span>
+                        <div
+                            class="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-white/20">
+                        </div>
+                    </a>
+                    <a href="#access"
+                        class="px-8 py-3 bg-white/20 border border-white/40 text-white rounded-full hover:bg-white/30 transition-colors duration-300 shadow-sm backdrop-blur-md">
+                        場所を確認する
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+                </svg>
+            </div>
+        </section>
+
+        <!-- Concept Section -->
+        <section id="concept" class="py-24 px-6 relative overflow-hidden bg-base">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+
+                <!-- Concept Image (Replaced CSS Art) -->
+                <div class="w-full md:w-1/2 flex justify-center order-2 md:order-1 reveal">
+                    <div class="relative w-full max-w-sm">
+                        <div class="absolute inset-0 bg-accent/20 rounded-[3rem] blur-2xl transform rotate-3"></div>
+                        <img src="about.png" alt="Relaxing Student"
+                            class="relative rounded-[2rem] shadow-2xl w-full h-auto object-cover animate-float hover:scale-105 transition-transform duration-700">
+                        <!-- Awa-san Badge -->
+                        <div
+                            class="absolute -bottom-6 -right-6 bg-white p-2 rounded-full shadow-lg flex flex-col items-center animate-bounce duration-[3000ms]">
+                            <div
+                                class="w-16 h-12 bg-base rounded-full flex items-center justify-center relative border border-coffee/10">
+                                <div class="flex gap-2">
+                                    <div class="w-1 h-1 bg-coffee rounded-full"></div>
+                                    <div class="w-1 h-1 bg-coffee rounded-full"></div>
+                                </div>
+                            </div>
+                            <span class="text-[0.6rem] font-bold text-coffee mt-1">あわさん</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text -->
+                <div class="w-full md:w-1/2 order-1 md:order-2 reveal delay-200">
+                    <h3 class="text-accent font-bold mb-2 uppercase tracking-wider">Concept</h3>
+                    <h2 class="text-3xl font-bold text-coffee mb-6 leading-relaxed">
+                        学内の<br>
+                        精神的な安全基地
+                    </h2>
+                    <div class="space-y-6 text-coffee/80 leading-loose">
+                        <p>
+                            課題、研究、サークル、バイト。<br>
+                            日々何かに追われているあなたへ。
+                        </p>
+                        <p class="p-4 bg-white rounded-2xl border-l-4 border-accent shadow-sm">
+                            「休む」ことは、怠けることではありません。<br>
+                            それは、明日また走り出すための<br>
+                            <strong>大切なエネルギーチャージ</strong>です。
+                        </p>
+                        <p>
+                            Cafe Foamは、そんな頑張る山大生のための「逃げ場所」。
+                            たまには肩の力を抜いて、ふわふわの泡に身を委ねてみませんか？
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features (Grid) with Background Image -->
+        <section class="py-20 px-6 relative bg-fixed bg-cover bg-center" style="background-image: url('access.png');">
+            <div class="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+
+            <div class="max-w-6xl mx-auto relative z-10">
+                <h2 class="text-center text-3xl font-bold text-coffee mb-12 reveal">Why Cafe Foam?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div
+                        class="reveal glass p-8 rounded-3xl text-center hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 bg-white/70">
+                        <div
+                            class="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center text-accent mb-4 cursor-pointer hover:bg-accent hover:text-white transition-colors duration-300 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                                <line x1="6" y1="1" x2="6" y2="4"></line>
+                                <line x1="10" y1="1" x2="10" y2="4"></line>
+                                <line x1="14" y1="1" x2="14" y2="4"></line>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-xl text-coffee mb-2">High Quality Foam</h3>
+                        <p class="text-sm text-coffee/70">専門店レベルのきめ細かいフォームミルク。疲れた脳を優しくほぐします。</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div
+                        class="reveal delay-100 glass p-8 rounded-3xl text-center hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 bg-white/70">
+                        <div
+                            class="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center text-accent mb-4 cursor-pointer hover:bg-accent hover:text-white transition-colors duration-300 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                                <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                                <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-xl text-coffee mb-2">Wi-Fi &amp; Power</h3>
+                        <p class="text-sm text-coffee/70">電源・高速Wi-Fi完備。空きコマの課題消化から研究の気分転換まで。</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div
+                        class="reveal delay-200 glass p-8 rounded-3xl text-center hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 bg-white/70">
+                        <div
+                            class="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center text-accent mb-4 cursor-pointer hover:bg-accent hover:text-white transition-colors duration-300 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <path d="M12 1v2"></path>
+                                <path d="M12 21v2"></path>
+                                <path d="M4.22 4.22l1.42 1.42"></path>
+                                <path d="M18.36 18.36l1.42 1.42"></path>
+                                <path d="M1 12h2"></path>
+                                <path d="M21 12h2"></path>
+                                <path d="M4.22 19.78l1.42-1.42"></path>
+                                <path d="M18.36 5.64l1.42-1.42"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-xl text-coffee mb-2">Open Atmosphere</h3>
+                        <p class="text-sm text-coffee/70">「入りづらい」を解消した開放的な空間。お一人様も大歓迎です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="py-24 px-6 bg-base">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12 reveal">
+                    <h3 class="text-accent font-bold mb-2 uppercase tracking-wider">Drink Menu</h3>
+                    <h2 class="text-3xl font-bold text-coffee">メニューラインナップ</h2>
+                </div>
+
+                <!-- Menu Visual Image -->
+                <div class="w-full mb-16 rounded-3xl overflow-hidden shadow-xl reveal">
+                    <img src="menu.png" alt="Delicious Drinks"
+                        class="w-full h-64 md:h-80 object-cover hover:scale-105 transition-transform duration-1000">
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                    <!-- Cards -->
+                    <div
+                        class="reveal glass p-6 rounded-2xl text-center border-b-4 border-transparent hover:border-accent transition-all duration-300 group bg-white">
+                        <h4 class="font-bold text-coffee mb-2 group-hover:text-accent transition-colors">コーヒー (Hot)</h4>
+                        <p class="text-accent font-bold">¥300</p>
+                    </div>
+                    <div
+                        class="reveal delay-100 glass p-6 rounded-2xl text-center border-b-4 border-transparent hover:border-accent transition-all duration-300 group bg-white">
+                        <h4 class="font-bold text-coffee mb-2 group-hover:text-accent transition-colors">カフェラテ (Hot)
+                        </h4>
+                        <p class="text-accent font-bold">¥400</p>
+                    </div>
+                    <div
+                        class="reveal delay-100 glass p-6 rounded-2xl text-center border-b-4 border-transparent hover:border-accent transition-all duration-300 group bg-white">
+                        <h4 class="font-bold text-coffee mb-2 group-hover:text-accent transition-colors">バニララテ (Hot)
+                        </h4>
+                        <p class="text-accent font-bold">¥400</p>
+                    </div>
+                    <div
+                        class="reveal delay-100 glass p-6 rounded-2xl text-center border-b-4 border-transparent hover:border-accent transition-all duration-300 group bg-white">
+                        <h4 class="font-bold text-coffee mb-2 group-hover:text-accent transition-colors">カフェモカ (Hot)
+                        </h4>
+                        <p class="text-accent font-bold">¥400</p>
+                    </div>
+                    <div
+                        class="reveal delay-200 glass p-6 rounded-2xl text-center border-b-4 border-transparent hover:border-accent transition-all duration-300 group bg-white">
+                        <h4 class="font-bold text-coffee mb-2 group-hover:text-accent transition-colors">抹茶ラテ (Hot)</h4>
+                        <p class="text-accent font-bold">¥400</p>
+                    </div>
+                    <div
+                        class="reveal delay-200 glass p-6 rounded-2xl text-center border-b-4 border-transparent hover:border-accent transition-all duration-300 group bg-white">
+                        <h4 class="font-bold text-coffee mb-2 group-hover:text-accent transition-colors">ティーラテ (Hot)
+                        </h4>
+                        <p class="text-accent font-bold">¥500</p>
+                    </div>
+                    <div
+                        class="reveal delay-200 glass p-6 rounded-2xl text-center border-b-4 border-transparent hover:border-accent transition-all duration-300 group bg-white">
+                        <h4 class="font-bold text-coffee mb-2 group-hover:text-accent transition-colors">キャラメルマキアート</h4>
+                        <p class="text-accent font-bold">¥450</p>
+                    </div>
+                    <div
+                        class="reveal delay-200 glass p-6 rounded-2xl text-center border-b-4 border-transparent hover:border-accent transition-all duration-300 group bg-white">
+                        <h4 class="font-bold text-coffee mb-2 group-hover:text-accent transition-colors">ほうじ茶ラテ</h4>
+                        <p class="text-accent font-bold">¥400</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center reveal">
+                    <div class="inline-block glass px-8 py-6 rounded-xl border border-coffee/10 bg-white/50">
+                        <div class="flex items-center justify-center gap-2 mb-2 text-rose-500 font-bold">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                </path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Attention</span>
+                        </div>
+                        <p class="text-coffee/80 text-sm mb-1">※食事・パフェの提供はありません（ドリンク特化）</p>
+                        <p class="text-coffee/80 text-sm">※完全キャッシュレス決済（現金不可）</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Access & Footer -->
+        <footer id="access" class="bg-coffee text-white py-16 px-6 relative overflow-hidden">
+            <!-- Decorative circle -->
+            <div class="absolute -top-20 -left-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <h2 class="text-2xl font-bold mb-8 tracking-[0.2em]">Cafe Foam</h2>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
+                    <div class="flex items-center gap-2 group">
+                        <div class="p-2 bg-white/10 rounded-full group-hover:bg-accent transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <span class="text-sm md:text-base text-white/90">山形大学 社会共創デジタル学環（小白川キャンパス）</span>
+                    </div>
+                    <a href="https://instagram.com/cafe_foam_yamagata" target="_blank" rel="noopener noreferrer"
+                        class="flex items-center gap-2 hover:text-accent transition-colors group">
+                        <div class="p-2 bg-white/10 rounded-full group-hover:bg-accent transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <span class="text-sm md:text-base text-white/90">@cafe_foam_yamagata</span>
+                    </a>
+                </div>
+
+                <div class="border-t border-white/10 pt-8">
+                    <p class="text-white/60 text-sm mb-4">Target: 山形大学の学生、教職員</p>
+                    <p class="text-white/40 text-xs font-light">Copyright © Campus Cafe Project Team</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Header Glassmorphism on Scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('glass-dark'); // Dark glass for header over light sections? check contrast.
+                // Actually Hero is dark bg now, but other sections are light.
+                // Let's use standard glass but maybe dark text?
+                // Hero has text-white header. When scrolling to light sections, user needs to see text.
+                // Let's stick to a dark semi-transparent header for consistency or switch text color.
+                // Simplest is to keep header text white/light and use dark glass background.
+                header.classList.remove('py-4');
+                header.classList.add('py-2', 'bg-coffee/90', 'backdrop-blur-md', 'shadow-md');
+            } else {
+                header.classList.remove('bg-coffee/90', 'backdrop-blur-md', 'shadow-md', 'py-2');
+                header.classList.add('py-4');
+            }
+        });
+
+        // Intersection Observer for Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll for Anchor Links (Backup for Safari/Legacy)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
