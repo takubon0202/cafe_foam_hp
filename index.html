@@ -21,7 +21,7 @@
                 extend: {
                     colors: {
                         base: '#F9F5EF', // Even softer warm white
-                        coffee: '#5C4033', // More subtle brown
+                        coffee: '#3C2A21', // Darker brown for contrast
                         accent: '#EFA880', // Soft Terracotta
                         foam: '#FFFEFA',
                         subtle: '#9A8C85', // Gray-brown for text
@@ -98,7 +98,7 @@
 
         /* Text Shadow for overlay readability */
         .text-shadow-sm {
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
         }
 
         /* Reveal Animation */
@@ -147,7 +147,7 @@
             <!-- Background Image with Parallax Effect -->
             <div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-[20s] ease-linear scale-105"
                 style="background-image: url('hero_bg.png'); filter: brightness(0.85);"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-0"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/60 z-0"></div>
 
             <div class="z-10 text-center px-6 relative w-full max-w-4xl mx-auto">
                 <p
@@ -161,7 +161,7 @@
                 <div class="w-12 h-px bg-white/50 mx-auto mb-10 opacity-0 animate-[fadeInUp_1s_ease-out_1.2s_forwards]">
                 </div>
                 <p
-                    class="text-sm md:text-base text-white/90 mb-12 font-medium leading-loose tracking-wider opacity-0 animate-[fadeInUp_1s_ease-out_1.4s_forwards]">
+                    class="text-sm md:text-base text-white mb-12 font-medium leading-loose tracking-wider opacity-0 animate-[fadeInUp_1s_ease-out_1.4s_forwards] inline-block bg-black/20 backdrop-blur-md px-8 py-4 rounded-2xl border border-white/10 shadow-lg">
                     頑張り続ける日々に、心休まる一杯を。<br class="hidden md:block">
                     ここは、あなたのための精神的な安全基地。
                 </p>
@@ -257,7 +257,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Feature 1 -->
                     <div
-                        class="reveal glass p-10 rounded-[2.5rem] text-center hover:-translate-y-2 transition-transform duration-500">
+                        class="reveal glass !bg-white/95 p-10 rounded-[2.5rem] text-center hover:-translate-y-2 transition-transform duration-500">
                         <div
                             class="w-20 h-20 bg-white/80 rounded-full mx-auto flex items-center justify-center text-accent mb-6 shadow-soft">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
