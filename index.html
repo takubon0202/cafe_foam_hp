@@ -39,15 +39,23 @@
                         'float-delayed': 'float 9s ease-in-out infinite 2s',
                         'fade-in-up': 'fadeInUp 1s ease-out forwards',
                     },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
+                },
+                keyframes: {
+                    float: {
+                        '0%, 100%': { transform: 'translateY(0)' },
+                        '50%': { transform: 'translateY(-15px)' },
+                    },
+                    fadeInUp: {
+                        '0%': { opacity: '0', transform: 'translateY(20px)' },
+                        '100%': { opacity: '1', transform: 'translateY(0)' },
+                    },
+                    zoomIn: {
+                        '0%': { opacity: '0', transform: 'scale(0.95)' },
+                        '100%': { opacity: '1', transform: 'scale(1)' },
+                    },
+                    shimmer: {
+                        '0%': { backgroundPosition: '-200% 0' },
+                        '100%': { backgroundPosition: '200% 0' },
                     }
                 }
             }
@@ -118,6 +126,61 @@
             aspect-ratio: 1 / 1;
         }
     </style>
+    <style>
+        /* New Animations */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        /* Staggered Reveal for lists */
+        .reveal-stagger>* {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal-stagger.active>* {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-stagger.active>*:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-stagger.active>*:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-stagger.active>*:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-stagger.active>*:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .reveal-stagger.active>*:nth-child(5) {
+            transition-delay: 0.5s;
+        }
+
+        .reveal-stagger.active>*:nth-child(6) {
+            transition-delay: 0.6s;
+        }
+
+        /* Blob Animation Background */
+        .blob-bg {
+            position: absolute;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.6;
+            animation: float 10s ease-in-out infinite;
+        }
+    </style>
 </head>
 
 <body class="antialiased overflow-x-hidden selection:bg-accent selection:text-white">
@@ -154,7 +217,7 @@
                     class="text-white/90 tracking-[0.3em] mb-6 text-xs md:text-sm font-medium opacity-0 animate-[fadeInUp_1s_ease-out_0.8s_forwards]">
                     MENTAL SAFE BASE</p>
                 <h2
-                    class="text-4xl md:text-6xl lg:text-8xl font-bold leading-tight mb-10 text-shadow-sm opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards]">
+                    class="text-white text-4xl md:text-6xl lg:text-8xl font-bold leading-tight mb-10 opacity-0 animate-[fadeInUp_1s_ease-out_1s_forwards] hover:scale-105 transition-transform duration-700 cursor-default">
                     山形大生の日常に、<br>
                     <span class="text-white inline-block mt-2 md:mt-4">ふわふわの泡</span>を。
                 </h2>
@@ -189,6 +252,9 @@
 
         <!-- Concept Section -->
         <section id="concept" class="py-32 px-6 relative overflow-hidden bg-base">
+            <!-- Floating Blobs -->
+            <div class="blob-bg w-64 h-64 bg-accent/20 rounded-full top-20 left-10"></div>
+            <div class="blob-bg w-80 h-80 bg-orange-200/20 rounded-full bottom-20 right-10 animation-delay-2000"></div>
             <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-16 md:gap-24">
 
                 <!-- Concept Image -->
@@ -338,10 +404,10 @@
 
                     <!-- Menu Grid -->
                     <div class="w-full lg:w-7/12">
-                        <div class="grid grid-cols-2 gap-4 md:gap-6">
+                        <div class="grid grid-cols-2 gap-4 md:gap-6 reveal-stagger">
                             <!-- Cards -->
                             <div
-                                class="reveal glass bg-white/60 p-6 rounded-2xl hover:bg-white transition-all duration-300 group cursor-default">
+                                class="glass bg-white/60 p-6 rounded-2xl hover:bg-white hover-lift group cursor-default shadow-sm hover:shadow-xl border border-white/50">
                                 <div class="flex justify-between items-end mb-1">
                                     <h4 class="font-bold text-coffee group-hover:text-accent transition-colors">コーヒー
                                     </h4>
@@ -350,7 +416,7 @@
                                 <p class="text-xs text-subtle opacity-60">Hot / Iced</p>
                             </div>
                             <div
-                                class="reveal glass bg-white/60 p-6 rounded-2xl hover:bg-white transition-all duration-300 group cursor-default">
+                                class="glass bg-white/60 p-6 rounded-2xl hover:bg-white hover-lift group cursor-default shadow-sm hover:shadow-xl border border-white/50">
                                 <div class="flex justify-between items-end mb-1">
                                     <h4 class="font-bold text-coffee group-hover:text-accent transition-colors">カフェラテ
                                     </h4>
@@ -359,7 +425,7 @@
                                 <p class="text-xs text-subtle opacity-60">Hot / Iced</p>
                             </div>
                             <div
-                                class="reveal glass bg-white/60 p-6 rounded-2xl hover:bg-white transition-all duration-300 group cursor-default">
+                                class="glass bg-white/60 p-6 rounded-2xl hover:bg-white hover-lift group cursor-default shadow-sm hover:shadow-xl border border-white/50">
                                 <div class="flex justify-between items-end mb-1">
                                     <h4 class="font-bold text-coffee group-hover:text-accent transition-colors">バニララテ
                                     </h4>
@@ -368,7 +434,7 @@
                                 <p class="text-xs text-subtle opacity-60">Hot / Iced</p>
                             </div>
                             <div
-                                class="reveal glass bg-white/60 p-6 rounded-2xl hover:bg-white transition-all duration-300 group cursor-default">
+                                class="glass bg-white/60 p-6 rounded-2xl hover:bg-white hover-lift group cursor-default shadow-sm hover:shadow-xl border border-white/50">
                                 <div class="flex justify-between items-end mb-1">
                                     <h4 class="font-bold text-coffee group-hover:text-accent transition-colors">カフェモカ
                                     </h4>
@@ -377,7 +443,7 @@
                                 <p class="text-xs text-subtle opacity-60">Hot / Iced</p>
                             </div>
                             <div
-                                class="reveal glass bg-white/60 p-6 rounded-2xl hover:bg-white transition-all duration-300 group cursor-default">
+                                class="glass bg-white/60 p-6 rounded-2xl hover:bg-white hover-lift group cursor-default shadow-sm hover:shadow-xl border border-white/50">
                                 <div class="flex justify-between items-end mb-1">
                                     <h4 class="font-bold text-coffee group-hover:text-accent transition-colors">抹茶ラテ
                                     </h4>
@@ -386,7 +452,7 @@
                                 <p class="text-xs text-subtle opacity-60">Hot / Iced</p>
                             </div>
                             <div
-                                class="reveal glass bg-white/60 p-6 rounded-2xl hover:bg-white transition-all duration-300 group cursor-default">
+                                class="glass bg-white/60 p-6 rounded-2xl hover:bg-white hover-lift group cursor-default shadow-sm hover:shadow-xl border border-white/50">
                                 <div class="flex justify-between items-end mb-1">
                                     <h4 class="font-bold text-coffee group-hover:text-accent transition-colors">ティーラテ
                                     </h4>
@@ -395,7 +461,7 @@
                                 <p class="text-xs text-subtle opacity-60">Hot Only</p>
                             </div>
                             <div
-                                class="reveal glass bg-white/60 p-6 rounded-2xl hover:bg-white transition-all duration-300 group cursor-default">
+                                class="glass bg-white/60 p-6 rounded-2xl hover:bg-white hover-lift group cursor-default shadow-sm hover:shadow-xl border border-white/50">
                                 <div class="flex justify-between items-end mb-1">
                                     <h4 class="font-bold text-coffee group-hover:text-accent transition-colors">
                                         キャラメル<br>マキアート</h4>
@@ -404,7 +470,7 @@
                                 <p class="text-xs text-subtle opacity-60">Hot / Iced</p>
                             </div>
                             <div
-                                class="reveal glass bg-white/60 p-6 rounded-2xl hover:bg-white transition-all duration-300 group cursor-default">
+                                class="glass bg-white/60 p-6 rounded-2xl hover:bg-white hover-lift group cursor-default shadow-sm hover:shadow-xl border border-white/50">
                                 <div class="flex justify-between items-end mb-1">
                                     <h4 class="font-bold text-coffee group-hover:text-accent transition-colors">ほうじ茶ラテ
                                     </h4>
@@ -847,7 +913,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(el => {
+        document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
             observer.observe(el);
         });
 
